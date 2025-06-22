@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login – BankHub</title>
+</head>
+<body style="font-family:sans-serif; display:flex; justify-content:center; align-items:center; height:100vh; background:#f0f2f5;">
+
+  <div style="background:white; padding:30px; border-radius:10px; box-shadow:0 0 15px rgba(0,0,0,0.1); width:300px;">
+    <h2 style="text-align:center; color:#004080;">Login</h2>
+    <form onsubmit="login(event)">
+      <label>Email</label><br>
+      <input type="email" id="loginEmail" required style="width:100%; padding:8px; margin-bottom:10px;"><br>
+      <label>Password</label><br>
+      <input type="password" id="loginPassword" required style="width:100%; padding:8px; margin-bottom:10px;"><br>
+      <button type="submit" id="btn" style="width:100%; padding:10px; background:#004080; color:white; border:none; border-radius:5px;">Login</button>
+      <p id="loginMsg" style="color:red; text-align:center; margin-top:10px;"></p>
+    </form>
+  </div>
+
+  <script>
+    function login(e) {
+      e.preventDefault();
+      const email = document.getElementById("loginEmail").value;
+      const password = document.getElementById("loginPassword").value;
+      const savedEmail = localStorage.getItem("email");
+      const savedPassword = localStorage.getItem("password");
+      const btn = document.getElementById('btn');
+
+
+      if (email === savedEmail && password === savedPassword) {
+        document.getElementById("loginMsg").style.color = "green";
+        document.getElementById("loginMsg").innerText = "Login successful!";
+        
+     window.location.href = "index.html";
+      } else {
+        document.getElementById("loginMsg").innerText = "Invalid credentials.";
+      }
+    }
+    
+  </script>
+
+</body>
+</html>

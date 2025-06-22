@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign Up – BankHub</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #eef2f7;
+      margin: 0;
+    }
+
+    .signup-box {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+
+    .signup-box h2 {
+      text-align: center;
+      color: #006600;
+      margin-bottom: 20px;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background: #006600;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background: #009900;
+    }
+
+    /* Popup Styles */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+      z-index: 1000;
+      text-align: center;
+      font-size: 18px;
+    }
+
+    .popup.show {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .popup button {
+      margin-top: 15px;
+      padding: 8px 16px;
+      background-color: #1a237e;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .popup button:hover {
+      background-color: #3949ab;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="signup-box">
+    <h2>Sign Up</h2>
+    <form onsubmit="signup(event)">
+      <label>Email</label><br>
+      <input type="email" id="signupEmail" required><br>
+      <label>Password</label><br>
+      <input type="password" id="signupPassword" required><br>
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+
+  <!-- 🎉 Popup -->
+  <div id="popup" class="popup">
+    🎉 Your account has been created successfully!
+    <br />
+    <button onclick="closePopup()">Close</button>
+  </div>
+
+  <script>
+    function signup(e) {
+      e.preventDefault();
+      const email = document.getElementById("signupEmail").value;
+      const password = document.getElementById("signupPassword").value;
+
+      // Save credentials (for demo purposes only — not secure!)
+      localStorage.setItem("email", email);
+      localStorage.setItem("password", password);
+
+      // Show popup
+      const popup = document.getElementById("popup");
+      popup.classList.add("show");
+    }
+
+    function closePopup() {
+      const popup = document.getElementById("popup");
+      popup.classList.remove("show");
+    }
+  </script>
+
+</body>
+</html>
